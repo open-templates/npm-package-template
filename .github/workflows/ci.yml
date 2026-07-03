@@ -2,17 +2,17 @@ name: CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18, 20]
-        
+        node-version: [22, 24]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
@@ -40,54 +40,43 @@ jobs:
 
       - name: Test package installation (CommonJS)
         run: |
-          # Test installation in a temporary directory
-          cd $(mktemp -d)
+          cd "$(mktemp -d)"
           npm init -y
-          # Set up CommonJS environment
-          echo '{"type": "commonjs"}' > package.json
-          npm install $GITHUB_WORKSPACE
-          
-          # Get the repository name dynamically
-          REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
-          echo "📦 Testing CommonJS import for package: $REPO_NAME"
-          
+          echo '{"type":"commonjs"}' > package.json
+          npm install "$GITHUB_WORKSPACE"
+
           node -e "
             const repoName = process.env.GITHUB_REPOSITORY.split('/')[1];
             try {
               const pkg = require(repoName);
-              console.log('✅ CommonJS import successful');
+              console.log('CommonJS import successful');
               console.log('Package exports:', Object.keys(pkg));
             } catch (error) {
-              console.log('❌ CommonJS import failed:', error.message);
+              console.error('CommonJS import failed:', error.message);
               process.exit(1);
             }
           "
 
       - name: Test package installation (ES Module)
         run: |
-          # Test ES module import in a temporary directory
-          cd $(mktemp -d)
+          cd "$(mktemp -d)"
           npm init -y
-          echo '{"type": "module"}' > package.json
-          npm install $GITHUB_WORKSPACE
-          
-          # Get the repository name dynamically
-          REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
-          echo "📦 Testing ES Module import for package: $REPO_NAME"
-          
+          echo '{"type":"module"}' > package.json
+          npm install "$GITHUB_WORKSPACE"
+
           node -e "
             const repoName = process.env.GITHUB_REPOSITORY.split('/')[1];
             import(repoName).then(pkg => {
-              console.log('✅ ES Module import successful');
+              console.log('ES Module import successful');
               console.log('Package exports:', Object.keys(pkg));
             }).catch(error => {
-              console.log('❌ ES Module import failed:', error.message);
+              console.error('ES Module import failed:', error.message);
               process.exit(1);
             });
           "
 
       - name: Upload coverage to Codecov
-        if: matrix.node-version == 18
+        if: matrix.node-version == 22
         uses: codecov/codecov-action@v7
         with:
           file: ./coverage/lcov.info

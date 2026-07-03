@@ -70,10 +70,9 @@ Documentation improvements are always welcome:
 
 ### Prerequisites
 
-- Node.js 16+ (18+ recommended)
-- npm 8+
+- Node.js 20+
+- npm 10+
 - Git
-- PowerShell (for Windows-specific scripts)
 
 ### Setup Steps
 
@@ -130,7 +129,7 @@ Documentation improvements are always welcome:
 
 ### Testing
 
-We use Jest for testing. Please ensure:
+We use Vitest for testing. Please ensure:
 
 - **All tests pass**: `npm test`
 - **Coverage remains high**: `npm run test:coverage`
