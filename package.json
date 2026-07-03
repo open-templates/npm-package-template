@@ -1,6 +1,6 @@
 {
   "name": "npm-package-template",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A modern TypeScript npm package template with automated publishing, testing, and tooling",
   "type": "module",
   "sideEffects": false,
@@ -48,7 +48,8 @@
     "url": "git+https://github.com/open-templates/npm-package-template.git"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "homepage": "https://github.com/open-templates/npm-package-template#readme",
   "bugs": {
