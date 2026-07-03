@@ -80,7 +80,7 @@ Documentation improvements are always welcome:
 1. **Fork and Clone**
 
    ```bash
-   git clone https://github.com/xarlizard/npm-package-template.git
+   git clone https://github.com/open-templates/npm-package-template.git
    cd npm-package-template
    ```
 

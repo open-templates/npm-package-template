@@ -51,14 +51,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xarlizard/npm-package-template.git"
+    "url": "git+https://github.com/open-templates/npm-package-template.git"
   },
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/xarlizard/npm-package-template#readme",
+  "homepage": "https://github.com/open-templates/npm-package-template#readme",
   "bugs": {
-    "url": "https://github.com/xarlizard/npm-package-template/issues"
+    "url": "https://github.com/open-templates/npm-package-template/issues"
   },
   "keywords": [
     "npm",

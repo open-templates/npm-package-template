@@ -1,11 +1,11 @@
 # NPM Package Template 📦
 
-[![npm version](https://badge.fury.io/js/@xarlizard%2Fnpm-package-template.svg)](https://badge.fury.io/js/@xarlizard%2Fnpm-package-template)
+[![npm version](https://badge.fury.io/js/@open-templates%2Fnpm-package-template.svg)](https://badge.fury.io/js/@open-templates%2Fnpm-package-template)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
-[![CI/CD](https://github.com/xarlizard/npm-package-template/actions/workflows/publish.yml/badge.svg)](https://github.com/xarlizard/npm-package-template/actions/workflows/publish.yml)
-[![Production Deployment](https://github.com/xarlizard/npm-package-template/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/xarlizard/npm-package-template/actions/workflows/deploy.yml)
-[![Coverage](https://codecov.io/gh/xarlizard/npm-package-template/branch/main/graph/badge.svg)](https://codecov.io/gh/xarlizard/npm-package-template)
+[![CI/CD](https://github.com/open-templates/npm-package-template/actions/workflows/publish.yml/badge.svg)](https://github.com/open-templates/npm-package-template/actions/workflows/publish.yml)
+[![Production Deployment](https://github.com/open-templates/npm-package-template/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/open-templates/npm-package-template/actions/workflows/deploy.yml)
+[![Coverage](https://codecov.io/gh/open-templates/npm-package-template/branch/main/graph/badge.svg)](https://codecov.io/gh/open-templates/npm-package-template)
 
 A comprehensive, production-ready TypeScript npm package template with automated publishing, testing, and modern
 tooling.
@@ -39,7 +39,7 @@ tooling.
 ### Method 2: Clone and Customize
 
 ```bash
-git clone https://github.com/xarlizard/npm-package-template.git my-package
+git clone https://github.com/open-templates/npm-package-template.git my-package
 cd my-package
 npm install
 ```
@@ -47,7 +47,7 @@ npm install
 ### Method 3: Install as Reference
 
 ```bash
-npm install @xarlizard/npm-package-template --save-dev
+npm install @open-templates/npm-package-template --save-dev
 ```
 
 > **ℹ️ Missing files**: By donwloading it directly as an npm-package, you will miss out on a lot of files, be sure to
