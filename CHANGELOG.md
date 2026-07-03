@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-07-03
+
+### Changed
+
+- Replaced Rollup with **tsup** for faster ESM + CJS builds and declaration output
+- Replaced Jest with **Vitest** for native ESM testing and V8 coverage
+- Updated TypeScript target to **ES2022** with strict modern compiler options
+- Raised minimum Node.js version to **22** (Maintenance LTS; CI runs on Node 22)
+- Migrated ESLint to unified **typescript-eslint** flat config
+- Removed PowerShell-only scripts in favor of cross-platform npm scripts
+- Modernized `package.json` exports, added `sideEffects: false`, and updated build artifacts
+- Fixed Dependabot configuration to allow patch/minor updates while ignoring major bumps
+
+### Removed
+
+- `rollup.config.js`, `jest.config.json`, and PowerShell dev/release scripts
+
 ## [1.1.0] - 2025-12-14
 
 ### Changed
@@ -77,4 +94,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update placeholders like `YOUR_USERNAME` and `YOUR_PACKAGE_NAME`
 - Customize README and package.json for your project
 - Automated publishing supports both scoped and unscoped names
-

@@ -67,7 +67,7 @@ compatibility across Node.js versions before merging or releasing changes.
 - Builds the package.
 - Dynamically tests package installation and import for both CommonJS and ES Module consumers, inferring the package
   name from the repository.
-- Uploads coverage to Codecov (for Node 18).
+- Uploads coverage to Codecov (for Node 22).
 
 ## Usage
 

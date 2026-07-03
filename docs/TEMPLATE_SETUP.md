@@ -167,19 +167,19 @@ npm install --save-dev dev-package-name
 
 ### Build Configuration
 
-Update `rollup.config.js` if you need different build settings:
+Update `tsup.config.ts` if you need different build settings:
 
-- External dependencies
-- Additional plugins
+- External dependencies (`external` option)
+- Additional entry points
 - Different output formats
 
 ### Testing
 
-Update `jest.config.json` if you need different test settings:
+Update `vitest.config.ts` if you need different test settings:
 
 - Test patterns
 - Coverage settings
-- Setup files
+- Test environment
 
 ## 7. Publishing
 

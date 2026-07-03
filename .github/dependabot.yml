@@ -1,34 +1,28 @@
 version: 2
 updates:
-  # Enable version updates for npm
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: npm
+    directory: /
     schedule:
-      interval: "daily"
+      interval: weekly
     assignees:
-      - "xarlizard"
+      - xarlizard
     commit-message:
-      prefix: "chore"
-      include: "scope"
-    # Allow both direct and indirect dependencies
+      prefix: chore
+      include: scope
     allow:
-      - dependency-type: "direct"
-      - dependency-type: "indirect"
-    # Ignore major version updates for stability
+      - dependency-type: direct
+      - dependency-type: indirect
     ignore:
-      - dependency-name: "*"
-        update-types: 
-          - "version-update:semver-major"
-          - "version-update:semver-patch"
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
 
-
-  # Enable version updates for GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: "weekly"
+      interval: weekly
     assignees:
-      - "xarlizard"
+      - xarlizard
     commit-message:
-      prefix: "ci"
-      include: "scope"
+      prefix: ci
+      include: scope

@@ -1,16 +1,17 @@
 {
-  "name": "your_package_name",
+  "name": "your-package-name",
   "version": "0.0.0",
-  "description": "Here you should add a description",
+  "description": "Your package description",
   "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "files": [
@@ -20,29 +21,22 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "lint": "eslint \"src/**/*.{ts,tsx}\"",
-    "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
-    "dev": "pwsh -ExecutionPolicy Bypass -File scripts/dev.ps1",
-    "dev:test": "pwsh -ExecutionPolicy Bypass -File scripts/dev.ps1 -Task test",
-    "dev:build": "pwsh -ExecutionPolicy Bypass -File scripts/dev.ps1 -Task build",
-    "dev:lint": "pwsh -ExecutionPolicy Bypass -File scripts/dev.ps1 -Task lint",
-    "dev:typecheck": "pwsh -ExecutionPolicy Bypass -File scripts/dev.ps1 -Task typecheck",
-    "prepublishOnly": "npm run build && npm run test && npm run lint && npm run typecheck",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "dev": "npm run check",
+    "prepublishOnly": "npm run check",
     "setup": "node scripts/setup.js",
-    "setup:ps": "pwsh -ExecutionPolicy Bypass -File scripts/setup.ps1",
     "release": "node scripts/release.js patch",
     "release:minor": "node scripts/release.js minor",
-    "release:major": "node scripts/release.js major",
-    "release:ps": "pwsh -ExecutionPolicy Bypass -File scripts/release.ps1",
-    "release:ps:minor": "pwsh -ExecutionPolicy Bypass -File scripts/release.ps1 -VersionType minor",
-    "release:ps:major": "pwsh -ExecutionPolicy Bypass -File scripts/release.ps1 -VersionType major"
+    "release:major": "node scripts/release.js major"
   },
   "repository": {
     "type": "git",
@@ -57,13 +51,13 @@
   },
   "keywords": [],
   "author": {
-    "name": "YOUR_USERNAME",
+    "name": "YOUR_NAME",
     "email": "your.email@example.com",
     "url": "https://github.com/YOUR_USERNAME"
   },
   "license": "MIT",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=22.0.0"
   },
   "dependencies": {},
   "peerDependencies": {},
