@@ -66,7 +66,7 @@ npm install @open-templates/npm-package-template --save-dev
 ├── tsup.config.ts         # Build configuration
 ├── vitest.config.ts       # Test configuration
 ├── tsconfig.json          # TypeScript configuration
-├── .node-version          # Recommended Node.js version (22)
+├── .node-version          # Required Node.js version (22)
 └── package.json
 ```
 
@@ -130,7 +130,7 @@ npm publish
 
 ## Requirements
 
-- **Node.js** >= 20 (`.node-version` recommends 22)
+- **Node.js** >= 22 (Maintenance LTS; see `.node-version`)
 - **npm** >= 10
 
 ---
