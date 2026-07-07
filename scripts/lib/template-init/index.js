@@ -26,6 +26,7 @@ export async function initFromTemplate(options) {
     manifest,
     args: rawArgs = {},
     includePackageName = false,
+    includeAuthorStep = false,
     includeBundler = false,
     defaultBundler = 'npm',
     nextSteps = 'review git diff, then commit',
@@ -51,9 +52,23 @@ export async function initFromTemplate(options) {
 
   const partial = await resolveConfigInteractive(git, args, {
     includePackageName,
+    includeAuthorStep,
     includeBundler,
     defaultBundler: detectedBundler,
   });
+
+  let authorOwnerId =
+    partial.authorOwnerId ?? args.ownerId ?? git.ownerId ?? null;
+  if (includeAuthorStep && partial.authorLogin && !authorOwnerId) {
+    authorOwnerId = await fetchOwnerId(partial.authorLogin);
+  }
+
+  const authorEmail =
+    partial.authorEmail ??
+    buildAuthorEmail({
+      owner: partial.authorLogin ?? partial.owner,
+      ownerId: authorOwnerId,
+    });
 
   let ownerId = args.ownerId ?? git.ownerId ?? null;
   if (!ownerId) {
@@ -62,6 +77,10 @@ export async function initFromTemplate(options) {
 
   const config = {
     ...partial,
+    authorOwnerId,
+    authorEmail,
+    authorLogin: partial.authorLogin ?? partial.owner,
+    authorDisplayName: partial.authorDisplayName ?? partial.displayName,
     ownerId,
     email: buildAuthorEmail({ owner: partial.owner, ownerId }),
   };

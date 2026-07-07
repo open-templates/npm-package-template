@@ -17,27 +17,38 @@ Root markdown stays polished for the shared template catalog. `npm run init` ove
 npm run init
 ```
 
+**Step 1 — Author:** detects your Git identity (`git user.name`, `git user.email`, `gh api user`) and shows the values that will go into `package.json` author. Press Enter to accept, or choose manual entry.
+
+**Step 2 — Repository:** owner, repo, package name, and Dependabot bundler (defaults from git remote and lockfiles).
+
 ### Options
 
 ```bash
 npm run init -- --yes
-npm run init -- --owner acme --repo my-lib --package-name @acme/my-lib
+npm run init -- --owner acme --repo my-lib --author-login janedoe --display-name "Jane Doe"
 ```
 
 ## Placeholders (in `templates/` only)
 
 | Token | Example after init |
 |-------|-------------------|
-| `owner-username` | `acme` |
+| `owner-username` | `acme` (repo org/user) |
 | `repo-name` | `my-lib` |
 | `package-name` | `my-lib` |
 | `owner-display-name` | `Acme` |
+| `author-display-name` | `Jane Doe` |
+| `author-github-login` | `janedoe` |
+| `package-bundler` | `npm` (Dependabot ecosystem) |
 
 ## Copied files
 
 See [`templates/ABOUT_TEMPLATES.md`](templates/ABOUT_TEMPLATES.md) for the manifest.
 
 Workflows under `.github/workflows/` are **not** copied — they use `github.repository_owner` at runtime.
+
+## Modular init (future)
+
+Init logic lives in `scripts/lib/template-init/` as plain ESM modules. A future centralized `@open-templates/create` CLI can import the same API.
 
 ---
 

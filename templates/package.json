@@ -51,9 +51,9 @@
   },
   "keywords": [],
   "author": {
-    "name": "owner-display-name",
-    "email": "owner-id+owner-username@users.noreply.github.com",
-    "url": "https://github.com/owner-username"
+    "name": "author-display-name",
+    "email": "author-id+author-github-login@users.noreply.github.com",
+    "url": "https://github.com/author-github-login"
   },
   "license": "MIT",
   "engines": {

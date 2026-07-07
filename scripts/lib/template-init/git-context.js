@@ -59,7 +59,11 @@ export async function detectGitContext() {
     ownerId,
     displayName,
     remoteUrl,
+    userName,
     userEmail,
+    ghLogin: gh?.login ?? null,
+    ghId: gh?.id ?? null,
+    ghName: gh?.name ?? null,
     sources: [...new Set(sources)],
   };
 }

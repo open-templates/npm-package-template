@@ -8,6 +8,8 @@ export function parseArgs(argv) {
     repo: null,
     packageName: null,
     displayName: null,
+    authorLogin: null,
+    authorEmail: null,
     ownerId: null,
     bundler: null,
     yes: false,
@@ -20,6 +22,8 @@ export function parseArgs(argv) {
     else if (arg === '--repo') args.repo = argv[++i];
     else if (arg === '--package-name') args.packageName = argv[++i];
     else if (arg === '--display-name') args.displayName = argv[++i];
+    else if (arg === '--author-login') args.authorLogin = argv[++i];
+    else if (arg === '--author-email') args.authorEmail = argv[++i];
     else if (arg === '--owner-id') args.ownerId = String(argv[++i]);
     else if (arg === '--bundler') args.bundler = argv[++i];
     else if (arg === '--help' || arg === '-h') return { ...args, help: true };
@@ -42,6 +46,8 @@ Options:
   --repo <name>           Repository name
   --package-name <name>   npm package name (npm template)
   --display-name <name>   Author display name
+  --author-login <login>  GitHub username for package.json author
+  --author-email <email>  Author email (auto-built from GitHub id if omitted)
   --bundler <id>          npm | pnpm | yarn | bun | none
   --owner-id <id>         GitHub numeric user id (auto-fetched if omitted)
   --yes, -y               Non-interactive; use detected values only
