@@ -32,6 +32,7 @@ export async function initFromTemplate(options) {
     defaultBundler = 'npm',
     nextSteps = 'review git diff, then commit',
     templateLabel = 'template init',
+    authorStep = {},
   } = options;
 
   const args = { ...parseArgs(process.argv), ...rawArgs };
@@ -58,6 +59,7 @@ export async function initFromTemplate(options) {
     includeBundler,
     defaultBundler: detectedBundler,
     templateLabel,
+    authorStep,
   });
 
   let authorOwnerId =

@@ -4,6 +4,7 @@ import {
   buildDetectedAuthor,
   promptAuthorStep,
   resolveAuthorFromArgs,
+  resolveAuthorStepConfig,
 } from './author.js';
 import { fetchOwnerId, buildAuthorEmail } from './github.js';
 import {
@@ -21,7 +22,7 @@ import {
 /**
  * @param {import('./types.js').GitContext} git
  * @param {import('./types.js').InitArgs} args
- * @param {{ includePackageName?: boolean, includeAuthorStep?: boolean, includeBundler?: boolean, defaultBundler?: string, templateLabel?: string }} options
+ * @param {{ includePackageName?: boolean, includeAuthorStep?: boolean, includeBundler?: boolean, defaultBundler?: string, templateLabel?: string, authorStep?: import('./types.js').AuthorStepConfig }} options
  * @returns {Promise<import('./types.js').InitConfig>}
  */
 export async function resolveConfigInteractive(git, args, options = {}) {
@@ -31,6 +32,7 @@ export async function resolveConfigInteractive(git, args, options = {}) {
     includeBundler = false,
     defaultBundler = 'npm',
     templateLabel = 'template init',
+    authorStep = {},
   } = options;
 
   if (args.yes) {
@@ -46,9 +48,10 @@ export async function resolveConfigInteractive(git, args, options = {}) {
 
   let author = null;
   if (includeAuthorStep) {
-    step(1, 'package.json author (Git owner)');
+    const labels = resolveAuthorStepConfig(authorStep);
+    step(1, labels.stepTitle);
     const detected = buildDetectedAuthor(git);
-    author = await promptAuthorStep(detected, args);
+    author = await promptAuthorStep(detected, args, authorStep);
   }
 
   const repoStep = includeAuthorStep ? 2 : 1;

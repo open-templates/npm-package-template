@@ -10,6 +10,22 @@ import {
 const AUTHOR_EMAIL_PLACEHOLDER =
   'author-id+author-github-login@users.noreply.github.com';
 
+/** @type {import('./types.js').AuthorStepConfig} */
+export const DEFAULT_AUTHOR_STEP = {
+  stepTitle: 'package.json author (Git owner)',
+  panelTitle: 'Automatically detected Git owner',
+  selectMessage: 'How should we set the package.json author?',
+  acceptLabel: 'Accept detected Git owner',
+};
+
+/**
+ * @param {import('./types.js').AuthorStepConfig} [overrides]
+ * @returns {import('./types.js').AuthorStepConfig}
+ */
+export function resolveAuthorStepConfig(overrides = {}) {
+  return { ...DEFAULT_AUTHOR_STEP, ...overrides };
+}
+
 /**
  * Build author profile from git config and GitHub CLI (personal identity).
  * @param {import('./types.js').GitContext} git
@@ -72,15 +88,18 @@ function parseNoreplyEmail(email) {
 /**
  * @param {import('./types.js').DetectedAuthor} detected
  * @param {import('./types.js').InitArgs} args
+ * @param {import('./types.js').AuthorStepConfig} [stepConfig]
  * @returns {Promise<import('./types.js').AuthorConfig>}
  */
-export async function promptAuthorStep(detected, args) {
+export async function promptAuthorStep(detected, args, stepConfig = {}) {
+  const labels = resolveAuthorStepConfig(stepConfig);
+
   if (args.displayName || args.ownerId) {
     return resolveAuthorFromArgs(args, detected);
   }
 
   if (detected.detected) {
-    infoPanel('Automatically detected Git owner', [
+    infoPanel(labels.panelTitle, [
       { label: 'Name', value: detected.displayName ?? '' },
       { label: 'Email', value: detected.email ?? '' },
       { label: 'GitHub', value: detected.profileUrl ?? '' },
@@ -88,11 +107,11 @@ export async function promptAuthorStep(detected, args) {
     ]);
 
     const choice = await select({
-      message: 'How should we set the package.json author?',
+      message: labels.selectMessage,
       choices: [
         {
           value: 'accept',
-          label: 'Accept detected Git owner',
+          label: labels.acceptLabel,
           hint: 'recommended',
         },
         { value: 'manual', label: 'Enter manually' },

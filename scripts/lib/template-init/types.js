@@ -62,6 +62,14 @@
  */
 
 /**
+ * @typedef {object} AuthorStepConfig
+ * @property {string} [stepTitle]
+ * @property {string} [panelTitle]
+ * @property {string} [selectMessage]
+ * @property {string} [acceptLabel]
+ */
+
+/**
  * @typedef {object} TemplateInitOptions
  * @property {string} root
  * @property {string} [templatesDir]
@@ -73,6 +81,7 @@
  * @property {string} [defaultBundler]
  * @property {string} [nextSteps]
  * @property {string} [templateLabel]
+ * @property {import('./types.js').AuthorStepConfig} [authorStep]
  */
 
 export {};
