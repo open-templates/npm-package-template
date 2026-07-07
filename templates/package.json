@@ -33,6 +33,7 @@
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "dev": "npm run check",
     "prepublishOnly": "npm run check",
+    "setup": "node scripts/setup.js",
     "release": "node scripts/release.js patch",
     "release:minor": "node scripts/release.js minor",
     "release:major": "node scripts/release.js major"

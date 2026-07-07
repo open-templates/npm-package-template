@@ -15,6 +15,7 @@ export function parseArgs(argv) {
     ownerId: null,
     bundler: null,
     yes: false,
+    noCleanup: false,
   };
 
   for (let i = 2; i < argv.length; i += 1) {
@@ -28,6 +29,7 @@ export function parseArgs(argv) {
     else if (arg === '--author-email') args.authorEmail = argv[++i];
     else if (arg === '--owner-id') args.ownerId = String(argv[++i]);
     else if (arg === '--bundler') args.bundler = argv[++i];
+    else if (arg === '--no-cleanup') args.noCleanup = true;
     else if (arg === '--help' || arg === '-h') return { ...args, help: true };
   }
 
@@ -52,6 +54,7 @@ Options:
   --author-login <login>  GitHub username for package.json author
   --author-email <email>  Author email (auto-built from GitHub id if omitted)
   --bundler <id>          npm | pnpm | yarn | bun | none
+  --no-cleanup            Keep init scripts after run (debugging)
   --owner-id <id>         GitHub numeric user id (auto-fetched if omitted)
   --yes, -y               Non-interactive; use detected values only
   --help, -h              Show help

@@ -46,6 +46,8 @@ See [`templates/ABOUT_TEMPLATES.md`](templates/ABOUT_TEMPLATES.md) for the manif
 
 Workflows under `.github/workflows/` are **not** copied — they use `github.repository_owner` at runtime.
 
+After init, one-time scaffolding is removed from `scripts/` (init wizard and `lib/template-init/`). `release.js` and `setup.js` are kept for publishing and the dev checklist.
+
 ## Modular init (future)
 
 Init logic lives in `scripts/lib/template-init/` as plain ESM modules. A future centralized `@open-templates/create` CLI can import the same API.

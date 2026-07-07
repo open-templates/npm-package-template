@@ -19,6 +19,8 @@ initFromTemplate({
   includeBundler: true,
   defaultBundler: 'npm',
   templateLabel: 'npm package template',
+  scriptsCleanup: 'keep',
+  scriptsKeep: ['release.js', 'setup.js'],
   nextSteps: 'review git diff, then npm install && npm run dev',
 }).catch((err) => {
   printError(`Init failed: ${err.message}`);

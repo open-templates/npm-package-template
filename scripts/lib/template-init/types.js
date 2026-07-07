@@ -44,6 +44,7 @@
  * @property {string | null} [bundler]
  * @property {boolean} [yes]
  * @property {boolean} [help]
+ * @property {boolean} [noCleanup]
  */
 
 /**
@@ -82,6 +83,8 @@
  * @property {string} [nextSteps]
  * @property {string} [templateLabel]
  * @property {import('./types.js').AuthorStepConfig} [authorStep]
+ * @property {'all' | 'keep' | false} [scriptsCleanup]
+ * @property {string[]} [scriptsKeep]
  */
 
 export {};

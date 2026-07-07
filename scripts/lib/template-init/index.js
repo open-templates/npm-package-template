@@ -12,6 +12,7 @@ import { copyFromManifest } from './copy.js';
 import { resolveConfigInteractive } from './prompts.js';
 import { parseArgs, printHelp } from './parse-args.js';
 import { brand, section, success, muted } from './terminal.js';
+import { cleanupInitScripts, reportCleanup } from './cleanup.js';
 
 export { detectGitContext, buildReplacements, copyFromManifest };
 export { BUNDLER_OPTIONS } from './bundlers.js';
@@ -33,6 +34,8 @@ export async function initFromTemplate(options) {
     nextSteps = 'review git diff, then commit',
     templateLabel = 'template init',
     authorStep = {},
+    scriptsCleanup = false,
+    scriptsKeep = [],
   } = options;
 
   const args = { ...parseArgs(process.argv), ...rawArgs };
@@ -112,6 +115,17 @@ export async function initFromTemplate(options) {
 
   console.log('');
   success(`Copied ${copied.length} file(s) from ${templatesDir}/.`);
+
+  if (scriptsCleanup && !args.noCleanup) {
+    section(`Cleaning up init scripts · ${brand()}`);
+    const removed = cleanupInitScripts(root, {
+      mode: scriptsCleanup,
+      keep: scriptsKeep,
+    });
+    reportCleanup(removed);
+    console.log('');
+  }
+
   muted(`Next: ${nextSteps}`);
 
   return { config, copied };
