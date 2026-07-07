@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-07-07
+
+### Added
+
+- Two-layer template model: hosted root keeps `@open-templates` branding; adopter files live under `templates/` with placeholders
+- `npm run init` wizard (`scripts/lib/template-init/`) copies and personalizes files from `templates/` to the repo root
+- Git-aware defaults from `git remote`, `git config`, and GitHub CLI (`gh`)
+- Step 1: auto-detect Git owner for `package.json` author (name, noreply email, GitHub login) with accept or manual entry
+- Step 2: repository owner, package name, and Dependabot bundler selector (npm, pnpm, yarn, bun, or none)
+- `@open-templates` branded terminal UI with colors and arrow-key menus
+- Post-init cleanup: removes init scaffolding from `scripts/` while keeping `release.js` and `setup.js`
+- `--yes`, `--no-cleanup`, and other CLI flags for non-interactive and debugging flows
+- `docs/INIT_TEMPLATE.md` and `templates/ABOUT_TEMPLATES.md`
+
+### Changed
+
+- `setup.js` is now a dev checklist (no longer wraps init)
+- Adopter `templates/package.json` includes a `setup` script; author placeholders are separate from repo owner
+- Root docs and community files simplified for hosted template presentation
+
 ## [1.2.1] - 2026-07-03
 
 ### Fixed
