@@ -38,6 +38,7 @@
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "dev": "npm run check",
     "prepublishOnly": "npm run check",
+    "init": "node scripts/init-from-template.js",
     "setup": "node scripts/setup.js",
     "release": "node scripts/release.js patch",
     "release:minor": "node scripts/release.js minor",
@@ -66,11 +67,7 @@
     "automated-publishing",
     "esm"
   ],
-  "author": {
-    "name": "Xarlizard",
-    "email": "38315638+xarlizard@users.noreply.github.com",
-    "url": "https://github.com/xarlizard"
-  },
+  "author": "@open-templates",
   "license": "MIT",
   "engines": {
     "node": ">=22.0.0"

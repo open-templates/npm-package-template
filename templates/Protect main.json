@@ -3,7 +3,7 @@
   "name": "Protect main",
   "target": "branch",
   "source_type": "Repository",
-  "source": "open-templates/npm-package-template",
+  "source": "owner-username/repo-name",
   "enforcement": "active",
   "conditions": {
     "ref_name": {

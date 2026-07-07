@@ -1,6 +1,6 @@
 {
-  "name": "your-package-name",
-  "version": "0.0.0",
+  "name": "package-name",
+  "version": "0.1.0",
   "description": "Your package description",
   "type": "module",
   "sideEffects": false,
@@ -33,33 +33,42 @@
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "dev": "npm run check",
     "prepublishOnly": "npm run check",
-    "setup": "node scripts/setup.js",
     "release": "node scripts/release.js patch",
     "release:minor": "node scripts/release.js minor",
     "release:major": "node scripts/release.js major"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YOUR_USERNAME/YOUR_PACKAGE_NAME.git"
+    "url": "git+https://github.com/owner-username/repo-name.git"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
-  "homepage": "https://github.com/YOUR_USERNAME/YOUR_PACKAGE_NAME#readme",
+  "homepage": "https://github.com/owner-username/repo-name#readme",
   "bugs": {
-    "url": "https://github.com/YOUR_USERNAME/YOUR_PACKAGE_NAME/issues"
+    "url": "https://github.com/owner-username/repo-name/issues"
   },
   "keywords": [],
   "author": {
-    "name": "YOUR_NAME",
-    "email": "your.email@example.com",
-    "url": "https://github.com/YOUR_USERNAME"
+    "name": "owner-display-name",
+    "email": "owner-id+owner-username@users.noreply.github.com",
+    "url": "https://github.com/owner-username"
   },
   "license": "MIT",
   "engines": {
     "node": ">=22.0.0"
   },
-  "dependencies": {},
-  "peerDependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^22.15.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^9.39.2",
+    "globals": "^16.5.0",
+    "prettier": "^3.7.4",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.59.2",
+    "vitest": "^3.2.4"
+  }
 }

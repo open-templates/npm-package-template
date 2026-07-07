@@ -1,14 +1,21 @@
 # Dependabot Configuration (`.github/dependabot.yml`)
 
 ## Purpose
+
 Automates dependency updates for npm packages and GitHub Actions workflows.
 
-## What It Does
-- Checks for npm dependency updates daily.
-- Checks for GitHub Actions updates weekly.
-- Assigns and requests review from the specified user(s).
-- Ignores major version updates for stability.
+## Placeholders
 
-## Usage
-- Update `YOUR_USERNAME` to your GitHub username or team.
-- To change update frequency or scope, edit `.github/dependabot.yml`.
+Assignees are **commented** until you opt in:
+
+```yaml
+# assignees:
+#   - owner-username
+```
+
+Run `npm run init` to copy `templates/dependabot.yml` → `.github/dependabot.yml`. **CODEOWNERS** requests reviews even without assignees.
+
+## Customize
+
+- Edit intervals and `ignore` rules in `.github/dependabot.yml`
+- See [INIT_TEMPLATE.md](INIT_TEMPLATE.md)

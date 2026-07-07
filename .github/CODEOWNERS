@@ -1,2 +1,3 @@
-* @xarlizard
-.github/workflows/* @xarlizard
+# Default owner for the hosted template — adopters get @owner-username via npm run init
+* @open-templates
+.github/workflows/* @open-templates
