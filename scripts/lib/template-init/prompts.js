@@ -16,7 +16,6 @@ import {
   confirm,
   promptText,
   error,
-  muted,
 } from './terminal.js';
 
 /**

@@ -30,7 +30,7 @@ export function applyBundlerToDependabot(content, bundler) {
     return content.replace(/package-bundler/g, bundler.dependabotEcosystem);
   }
   return content.replace(
-    /\n  - package-ecosystem: "?package-bundler"?[\s\S]*?(?=\n  - package-ecosystem: "?github-actions"?)/,
+    /\n {2}- package-ecosystem: "?package-bundler"?[\s\S]*?(?=\n {2}- package-ecosystem: "?github-actions"?)/,
     ''
   );
 }
