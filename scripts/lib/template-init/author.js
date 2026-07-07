@@ -1,4 +1,11 @@
 import { fetchOwnerId, buildAuthorEmail } from './github.js';
+import {
+  infoPanel,
+  muted,
+  promptText,
+  promptTextOptional,
+  select,
+} from './terminal.js';
 
 const AUTHOR_EMAIL_PLACEHOLDER =
   'author-id+author-github-login@users.noreply.github.com';
@@ -63,38 +70,45 @@ function parseNoreplyEmail(email) {
 }
 
 /**
- * @param {import('readline/promises').Interface} rl
  * @param {import('./types.js').DetectedAuthor} detected
  * @param {import('./types.js').InitArgs} args
  * @returns {Promise<import('./types.js').AuthorConfig>}
  */
-export async function promptAuthorStep(rl, detected, args) {
+export async function promptAuthorStep(detected, args) {
   if (args.displayName || args.ownerId) {
     return resolveAuthorFromArgs(args, detected);
   }
 
   if (detected.detected) {
-    console.log('Automatically detected Git owner:');
-    console.log(`  Name:    ${detected.displayName}`);
-    console.log(`  Email:   ${detected.email}`);
-    console.log(`  GitHub:  ${detected.profileUrl}`);
-    console.log(`  via     ${detected.sources.join(', ')}\n`);
-    console.log('  1) Accept detected author (default)');
-    console.log('  2) Enter manually\n');
+    infoPanel('Automatically detected Git owner', [
+      { label: 'Name', value: detected.displayName ?? '' },
+      { label: 'Email', value: detected.email ?? '' },
+      { label: 'GitHub', value: detected.profileUrl ?? '' },
+      { label: 'via', value: detected.sources.join(', ') },
+    ]);
 
-    const choice = (
-      await rl.question('Choice [1]: ')
-    ).trim().toLowerCase();
+    const choice = await select({
+      message: 'How should we set the package.json author?',
+      choices: [
+        {
+          value: 'accept',
+          label: 'Accept detected Git owner',
+          hint: 'recommended',
+        },
+        { value: 'manual', label: 'Enter manually' },
+      ],
+      defaultIndex: 0,
+    });
 
-    if (choice === '2' || choice === 'manual' || choice === 'm') {
-      return promptManualAuthor(rl, detected);
+    if (choice.value === 'manual') {
+      return promptManualAuthor(detected);
     }
 
     return authorFromDetected(detected);
   }
 
-  console.log('Could not detect Git owner from git config or GitHub CLI.\n');
-  return promptManualAuthor(rl, detected);
+  muted('Could not detect Git owner from git config or GitHub CLI.\n');
+  return promptManualAuthor(detected);
 }
 
 /**
@@ -132,26 +146,22 @@ export function resolveAuthorFromArgs(args, detected) {
 }
 
 /**
- * @param {import('readline/promises').Interface} rl
  * @param {import('./types.js').DetectedAuthor} [fallback]
  */
-async function promptManualAuthor(rl, fallback = {}) {
-  const login = await promptRequired(
-    rl,
+async function promptManualAuthor(fallback = {}) {
+  const login = await promptText(
     'GitHub username (author)',
     fallback.login ?? ''
   );
-  const displayName = await promptRequired(
-    rl,
+  const displayName = await promptText(
     'Author display name',
     fallback.displayName ?? login
   );
   let ownerId = fallback.ownerId ?? '';
-  const idAnswer = (
-    await rl.question(
-      `GitHub numeric user id (optional)${ownerId ? ` [${ownerId}]` : ''}: `
-    )
-  ).trim();
+  const idAnswer = await promptTextOptional(
+    'GitHub numeric user id (optional)',
+    ownerId || ''
+  );
   ownerId = idAnswer || ownerId || null;
 
   if (!ownerId) {
@@ -166,22 +176,6 @@ async function promptManualAuthor(rl, fallback = {}) {
     authorOwnerId: ownerId,
     authorEmail: email,
   };
-}
-
-/**
- * @param {import('readline/promises').Interface} rl
- * @param {string} label
- * @param {string} defaultValue
- */
-async function promptRequired(rl, label, defaultValue) {
-  const suffix = defaultValue ? ` [${defaultValue}]` : '';
-  const answer = (await rl.question(`${label}${suffix}: `)).trim();
-  const value = answer || defaultValue;
-  if (!value) {
-    console.error(`❌ ${label} is required.`);
-    process.exit(1);
-  }
-  return value;
 }
 
 export { AUTHOR_EMAIL_PLACEHOLDER };

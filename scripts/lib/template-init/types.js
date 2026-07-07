@@ -72,6 +72,7 @@
  * @property {boolean} [includeBundler]
  * @property {string} [defaultBundler]
  * @property {string} [nextSteps]
+ * @property {string} [templateLabel]
  */
 
 export {};

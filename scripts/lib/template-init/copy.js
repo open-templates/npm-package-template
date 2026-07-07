@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { applyReplacements } from './placeholders.js';
+import { copyLine, warn } from './terminal.js';
 
 /**
  * @param {object} params
@@ -24,7 +25,7 @@ export function copyFromManifest({
     const dest = path.join(root, toRel);
 
     if (!fs.existsSync(src)) {
-      console.warn(`⚠ Skipped missing template: ${templatesDir}/${fromRel}`);
+      warn(`Skipped missing template: ${templatesDir}/${fromRel}`);
       continue;
     }
 
@@ -37,7 +38,7 @@ export function copyFromManifest({
     fs.mkdirSync(path.dirname(dest), { recursive: true });
     fs.writeFileSync(dest, content, 'utf8');
     copied.push({ from: `${templatesDir}/${fromRel}`, to: toRel });
-    console.log(`✓ ${toRel} ← ${templatesDir}/${fromRel}`);
+    copyLine(`${templatesDir}/${fromRel}`, toRel);
   }
 
   return copied;

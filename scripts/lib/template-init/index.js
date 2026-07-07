@@ -11,6 +11,7 @@ import { buildReplacements } from './placeholders.js';
 import { copyFromManifest } from './copy.js';
 import { resolveConfigInteractive } from './prompts.js';
 import { parseArgs, printHelp } from './parse-args.js';
+import { brand, section, success, muted } from './terminal.js';
 
 export { detectGitContext, buildReplacements, copyFromManifest };
 export { BUNDLER_OPTIONS } from './bundlers.js';
@@ -30,6 +31,7 @@ export async function initFromTemplate(options) {
     includeBundler = false,
     defaultBundler = 'npm',
     nextSteps = 'review git diff, then commit',
+    templateLabel = 'template init',
   } = options;
 
   const args = { ...parseArgs(process.argv), ...rawArgs };
@@ -55,6 +57,7 @@ export async function initFromTemplate(options) {
     includeAuthorStep,
     includeBundler,
     defaultBundler: detectedBundler,
+    templateLabel,
   });
 
   let authorOwnerId =
@@ -95,7 +98,7 @@ export async function initFromTemplate(options) {
     return content;
   };
 
-  console.log('\n📋 Copying templates...\n');
+  section(`Copying templates · ${brand()}`);
 
   const copied = copyFromManifest({
     root,
@@ -105,8 +108,9 @@ export async function initFromTemplate(options) {
     transform,
   });
 
-  console.log(`\n✅ Copied ${copied.length} file(s) from ${templatesDir}/.`);
-  console.log(`Next: ${nextSteps}`);
+  console.log('');
+  success(`Copied ${copied.length} file(s) from ${templatesDir}/.`);
+  muted(`Next: ${nextSteps}`);
 
   return { config, copied };
 }

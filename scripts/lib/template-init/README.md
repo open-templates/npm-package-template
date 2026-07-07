@@ -26,6 +26,7 @@ await initFromTemplate({
 | `bundlers.js` | Dependabot ecosystem mapping |
 | `placeholders.js` | Token replacement |
 | `copy.js` | Manifest copy |
+| `terminal.js` | Branded colors, arrow-key menus |
 | `author.js` | Git author detection + accept/manual step |
 | `prompts.js` | Step-by-step CLI |
 | `manifests/*.js` | Per-template file lists |

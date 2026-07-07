@@ -1,3 +1,5 @@
+import { brandHeader } from './terminal.js';
+
 /**
  * @param {string[]} argv
  * @returns {import('./types.js').InitArgs}
@@ -36,10 +38,11 @@ export function parseArgs(argv) {
  * @param {string} templateName
  */
 export function printHelp(templateName) {
+  brandHeader(templateName);
   console.log(`Usage: init ${templateName} [options]
 
-Defaults are read from git remote, git config, and GitHub CLI (gh) when available.
-Press Enter to accept bracketed values.
+Defaults are read from git remote, git config, and GitHub CLI (gh).
+Use arrow keys to navigate menus; Enter to confirm.
 
 Options:
   --owner <login>         GitHub username or org
