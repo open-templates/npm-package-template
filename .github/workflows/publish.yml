@@ -191,7 +191,7 @@ jobs:
             echo ""
             echo "🔍 Troubleshooting:"
             echo "1. Ensure Trusted Publishing is enabled in your npm account:"
-            echo "   https://www.npmjs.com/settings/YOUR_USERNAME/access-tokens"
+            echo "   https://www.npmjs.com/settings/your-npm-username/access-tokens"
             echo "2. Verify the workflow path matches: .github/workflows/publish.yml"
             echo "3. Alternatively, set NPM_TOKEN secret in repository settings"
             echo "4. Check package name availability and permissions"

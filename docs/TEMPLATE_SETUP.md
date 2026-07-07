@@ -1,6 +1,14 @@
 # Template Setup Guide
 
-Follow these steps to customize this template for your package:
+Follow these steps to customize this template for your package.
+
+## 0. Initialize (first step)
+
+```bash
+npm run init
+```
+
+Copies personalized files from `templates/` to the repo root. The hosted template keeps **@open-templates** in root docs until you run this. See [`docs/INIT_TEMPLATE.md`](INIT_TEMPLATE.md).
 
 ## 1. Templates Folder
 
