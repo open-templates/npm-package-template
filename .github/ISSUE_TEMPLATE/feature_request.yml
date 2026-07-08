@@ -1,5 +1,5 @@
 name: Feature Request
-description: Suggest a new feature for the npm package template
+description: Suggest a new feature for Template
 title: "[Feature]: "
 labels: ["enhancement", "triage"]
 body:

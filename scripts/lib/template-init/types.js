@@ -85,6 +85,7 @@
  * @property {import('./types.js').AuthorStepConfig} [authorStep]
  * @property {'all' | 'keep' | false} [scriptsCleanup]
  * @property {string[]} [scriptsKeep]
+ * @property {[string, string][]} [extraReplacements]
  */
 
 export {};

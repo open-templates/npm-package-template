@@ -62,9 +62,6 @@ Closes #
 
 ---
 
-**For Template Users:**
-If you're using this template, please update this section with your specific PR template requirements.
-
 **For Maintainers:**
 - [ ] Code review completed
 - [ ] All CI checks pass

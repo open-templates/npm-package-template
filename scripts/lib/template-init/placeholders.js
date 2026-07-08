@@ -1,4 +1,5 @@
 import { AUTHOR_EMAIL_PLACEHOLDER } from './author.js';
+import { titleCase } from './git-context.js';
 
 const PLACEHOLDER_EMAIL = 'owner-id+owner-username@users.noreply.github.com';
 
@@ -35,7 +36,8 @@ export function buildReplacements(config) {
     ['@owner-username', `@${owner}`],
     [`@owner-username%2Fpackage-name`, `@${owner}%2F${packageName}`],
     [`%40owner-username%2Fpackage-name`, `%40${owner}%2F${packageName}`],
-    ['owner-display-name', displayName],
+    ['owner-display-name', authorNameVal],
+    ['repo-display-name', titleCase(repo)],
     ['package-name', packageName ?? repo],
     ['repo-name', repo],
     ['owner-username', owner],
