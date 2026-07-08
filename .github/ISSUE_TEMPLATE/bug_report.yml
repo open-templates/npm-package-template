@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a bug in the npm package template
+description: Report a bug in Template
 title: "[Bug]: "
 labels: ["bug", "triage"]
 body:
@@ -56,8 +56,8 @@ body:
       placeholder: |
         - OS: [e.g. Windows 11, macOS 12.3, Ubuntu 20.04]
         - Node.js version: [e.g. 18.15.0]
-        - npm version: [e.g. 9.5.0]
-        - Package version: [e.g. 1.0.0]
+        - Bun version: [e.g. 1.2.15]
+        - App version/commit: [e.g. 0.1.0 or SHA]
     validations:
       required: true
 

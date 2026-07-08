@@ -15,7 +15,7 @@ body:
       description: What type of documentation issue is this?
       options:
         - README.md
-        - Setup Guide (TEMPLATE_SETUP.md)
+        - Setup and onboarding docs
         - API Documentation
         - Examples
         - Contributing Guide

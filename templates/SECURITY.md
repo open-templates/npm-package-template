@@ -2,12 +2,14 @@
 
 ## Reporting a vulnerability
 
-**Please do not report security vulnerabilities through public GitHub issues.**
-
 Contact [@owner-username](https://github.com/owner-username) or use GitHub Security Advisories.
 
 ## Scope
 
-This policy covers **package-name** and its release automation in this repository.
+This policy covers **repo-name** once you add application code.
 
-Thank you for helping keep our users safe.
+---
+
+## Repository documents
+
+[README](README.md) | [INSTRUCTIONS](INSTRUCTIONS.md) | [CHANGELOG](CHANGELOG.md) | [CONTRIBUTING](CONTRIBUTING.md) | **SECURITY** | [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md)

@@ -36,6 +36,7 @@ export async function initFromTemplate(options) {
     authorStep = {},
     scriptsCleanup = false,
     scriptsKeep = [],
+    extraReplacements = [],
   } = options;
 
   const args = { ...parseArgs(process.argv), ...rawArgs };
@@ -93,7 +94,7 @@ export async function initFromTemplate(options) {
     email: buildAuthorEmail({ owner: partial.owner, ownerId }),
   };
 
-  const replacements = buildReplacements(config);
+  const replacements = [...extraReplacements, ...buildReplacements(config)];
   const bundler = getBundler(config.bundler ?? defaultBundler);
 
   const transform = (content, fromRel) => {
