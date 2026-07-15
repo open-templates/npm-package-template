@@ -26,6 +26,8 @@ npm run init
 
 See [`docs/INIT_TEMPLATE.md`](docs/INIT_TEMPLATE.md).
 
+Agent docs: [INSTRUCTIONS.md](INSTRUCTIONS.md) · [index.md](index.md) · [.agents/skills/](.agents/skills/)
+
 ---
 
 ## Features
